@@ -1,0 +1,16 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+jupyter
+torch
+torchvision
+torchaudio
+fastapi
+uvicorn
+pydantic
+python-dotenv
+pytest
+ruff
+yfinance
