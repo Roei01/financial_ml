@@ -52,7 +52,12 @@ def download_price_history(
     file_path = cache_path / filename
 
     if file_path.exists() and not force_refresh:
-        return pd.read_csv(file_path, parse_dates=["Date"], index_col="Date")
+        try:
+            return pd.read_csv(file_path, parse_dates=["Date"], index_col="Date")
+        except ValueError:
+            # If the cached file is corrupted or missing the 'Date' column,
+            # re-download the data and overwrite the cache.
+            file_path.unlink(missing_ok=True)
 
     data = yf.download(
         ticker,
